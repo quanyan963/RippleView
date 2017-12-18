@@ -13,27 +13,34 @@ import android.widget.Toast;
 import com.example.komoriwu.rippleview.MainActivity;
 import com.example.komoriwu.rippleview.R;
 import com.example.komoriwu.rippleview.util.Constent;
+import com.example.komoriwu.rippleview.widget.RippleButton;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
  * Created by KomoriWu on 2017/11/9.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //@BindView(R.id.et_name)
+    @BindView(R.id.et_name)
     EditText etName;
-    //@BindView(R.id.et_pass)
+    @BindView(R.id.et_pass)
     EditText etPass;
-    //@BindView(R.id.btn_login)
+    @BindView(R.id.btn_login)
     Button btnLogin;
-    //@BindView(R.id.tv_register)
+    @BindView(R.id.tv_register)
     TextView tvRegister;
-    //@BindView(R.id.tv_forgot)
+    @BindView(R.id.tv_forgot)
     TextView tvForgot;
+    @BindView(R.id.rv_btn)
+    RippleButton rvBtn;
 
     private String userName;
     private String pass;
@@ -42,12 +49,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        ButterKnife.bind(this);
 
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        etName = (EditText) findViewById(R.id.et_name);
-        etPass = (EditText) findViewById(R.id.et_pass);
-        tvRegister = (TextView) findViewById(R.id.tv_register);
-        tvForgot = (TextView) findViewById(R.id.tv_forgot);
+//        btnLogin = (Button) findViewById(R.id.btn_login);
+//        etName = (EditText) findViewById(R.id.et_name);
+//        etPass = (EditText) findViewById(R.id.et_pass);
+//        tvRegister = (TextView) findViewById(R.id.tv_register);
+//        tvForgot = (TextView) findViewById(R.id.tv_forgot);
         btnLogin.setOnClickListener(this);
         tvForgot.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
@@ -61,11 +69,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "Please enter the UserName", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (pass.length() == 0){
+        if (pass.length() == 0) {
             Toast.makeText(this, "Please enter the Password", Toast.LENGTH_SHORT).show();
             return false;
         }
-            return true;
+        return true;
     }
 
     @Override
@@ -73,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btn_login:
                 if (check()) {
-                    OkGo.<String>get(Constent.HEAD+Constent.LOGIN+"?username="+userName+"&password="+pass)
+                    OkGo.<String>get(Constent.HEAD + Constent.LOGIN + "?username=" + userName + "&password=" + pass)
                             .tag(this)
                             .execute(new StringCallback() {
                                 @Override
@@ -85,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.tv_register:
-                OkGo.<String>post(Constent.HEAD+Constent.REGISTER)
+                OkGo.<String>post(Constent.HEAD + Constent.REGISTER)
                         .tag(this)
                         .execute(new StringCallback() {
                             @Override
@@ -95,7 +103,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         });
                 break;
             case R.id.tv_forgot:
-                OkGo.<String>post(Constent.HEAD+Constent.FORGOT)
+                OkGo.<String>post(Constent.HEAD + Constent.FORGOT)
                         .tag(this)
                         .execute(new StringCallback() {
                             @Override
@@ -106,4 +114,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+//    @OnClick({R.id.rv_btn, R.id.btn_login, R.id.tv_forgot, R.id.tv_register})
+//    public void onViewClicked(View view) {
+//        switch (view.getId()) {
+//            case R.id.rv_btn:
+//                break;
+//            case R.id.btn_login:
+//                break;
+//            case R.id.tv_forgot:
+//                break;
+//            case R.id.tv_register:
+//                break;
+//        }
+//    }
 }
