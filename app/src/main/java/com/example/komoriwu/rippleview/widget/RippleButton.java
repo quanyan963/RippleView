@@ -36,7 +36,7 @@ public class RippleButton extends Button {
         super(context, attrs, defStyleAttr);
 //        mRippleDrawable = new RippleDrawable(BitmapFactory.
 //                decodeResource(getResources(), R.mipmap.ic_launcher));
-        mRippleDrawable = new RippleDrawable();
+        mRippleDrawable = new RippleDrawable(0x60000000);
         //设置刷新接口，此接口在view中已经实现  无需new
         mRippleDrawable.setCallback(this);
     }

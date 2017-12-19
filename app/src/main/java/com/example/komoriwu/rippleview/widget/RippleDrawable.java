@@ -48,8 +48,8 @@ public class RippleDrawable extends Drawable {
         //设置涟漪颜色
         setRippleColor(color);
 
-        mInterpolator = new DecelerateInterpolator();//表示3倍速  由快到慢
-        mExitInterpolator = new AccelerateInterpolator();//由慢到快
+        mInterpolator = new DecelerateInterpolator(2);//表示3倍速  由快到慢
+        mExitInterpolator = new AccelerateInterpolator(2);//由慢到快
         //设置滤镜  LightingColorFilter  第一个代表保留的颜色 第二个代表要填充的颜色
         //setColorFilter(new LightingColorFilter(Color.BLACK,Color.RED));
     }
