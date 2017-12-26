@@ -131,7 +131,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     fetchUserProfile();
                 } else {
-                    message.setText("The user is not signed in");
+                    runOnUiThread(() -> message.setText("The user is not signed in"));
+
                     /* The user is not signed in */
                 }
             }

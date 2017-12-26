@@ -81,15 +81,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btn_login:
                 if (check()) {
-                    OkGo.<String>get(Constent.HEAD + Constent.LOGIN + "?username=" + userName + "&password=" + pass)
-                            .tag(this)
-                            .execute(new StringCallback() {
-                                @Override
-                                public void onSuccess(Response<String> response) {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    finish();
-                                }
-                            });
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+//                    OkGo.<String>get(Constent.HEAD + Constent.LOGIN + "?username=" + userName + "&password=" + pass)
+//                            .tag(this)
+//                            .execute(new StringCallback() {
+//                                @Override
+//                                public void onSuccess(Response<String> response) {
+//                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                                    finish();
+//                                }
+//                            });
                 }
                 break;
             case R.id.tv_register:
